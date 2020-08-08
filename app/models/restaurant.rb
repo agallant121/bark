@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-  has_many_attached :image
+  has_one_attached :image
 
   validates_presence_of :name
 
@@ -20,7 +20,5 @@ class Restaurant < ApplicationRecord
     # .select('name')
     # .join(:reviews)
     # .order('avg(reviews.rating) desc')
-
-    select
   end
 end

@@ -14,8 +14,8 @@
   <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name, class: 'form-control' %>
-    <%= label_tag :image %>
-    <%= file_field_tag :image, multiple: true, class: "form-control" %>
+    <%= form.label :image %>
+    <%= form.file_field :image, class: "form-control" %>
   </div>
 
 

@@ -1,7 +1,8 @@
-<p>Welcome</p>
-
+<h4>Welcome</h4>
+<p></p>
 <div id="eats">
   <% @restaurants.each do |restaurant| %>
-    <p><%= restaurant.name %></p>
+      <strong><p><%= restaurant.name %></p></strong>
   <% end %>
 </div>
+<%= will_paginate @restaurants, renderer: BootstrapPagination::Rails, previous_label: "Back", next_label: "Next", inner_window: 0, outer_window: 0 %>

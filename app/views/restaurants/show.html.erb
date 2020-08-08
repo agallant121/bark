@@ -1,3 +1,8 @@
+<% if @restaurant.image.attached? %>
+  <%= image_tag @restaurant.image, style: "width: 200px; display: block" %>
+<% end %>
+
+
 <p id="notice"><%= notice %></p>
 
 <% if current_user.id == @restaurant.user_id %>
@@ -20,7 +25,6 @@
   <strong>User:</strong>
   <%= @restaurant.user_id %>
 </p>
-
 
 <%= render 'reviews/form' %>
 <h2>Reviews</h2>

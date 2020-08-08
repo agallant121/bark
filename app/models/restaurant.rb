@@ -1,4 +1,6 @@
 class Restaurant < ApplicationRecord
+  has_many_attached :image
+
   validates_presence_of :name
 
   belongs_to :user
@@ -13,7 +15,12 @@ class Restaurant < ApplicationRecord
     # reviews.order("created_at DESC")
   end
 
-  def self.order_places
-    order(avg_rating: :desc)
+  def sort_by_average
+    # Restaurant
+    # .select('name')
+    # .join(:reviews)
+    # .order('avg(reviews.rating) desc')
+
+    select
   end
 end

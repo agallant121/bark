@@ -22,23 +22,33 @@ The newest reviews should be at the top of the list.
 
 Users need to be able to delete their own comments. There is already a button, but it doesn't work. 
 
+- I feel as though I spent a silly amount of time on this one but let me explain my thinking...All I wanted to do was to target the comment's ID, however, I could not do that because comments are not their own rescource in the DB with a relationship to reviews, they are an attribute of reviews. Since this is an sqlite3 DB I could not do my plan which was to remove 'comment' from the Review table in the DB and make a new Comment table and have  a one to many with review:references for the comments. That way I would be able to target the comment's ID for deletion independent from the Review. However, since I could not do this I decided to just make a new route and controller action that would take the review's comment and set it to nil or an empty string (" "). When I tried this approach and played around with it in pry, it worked. I was able to get the comment and change it to an empty string but no matter how I approached saving the changes but using review.update / review.update_attributes(comment: ''), review.save (any combination of saving stuff) or any of those, the comment would not stay changed and remained on the page. I know you said to not spend too much time on this but it was bothering me so I stuck with it for a while. Unfortunately I could not get it to work so out of spite I am just deleting the entire review for now so you can at least see that I did something.
+
 ### Average Rating
 
 On the restaurant show page we need to see what it's 5 star rating is. 
 
+- This one was also quick with just a model method to call on a restaurant object. Method within the restaurant model and displaying on the restaurant show page.
+
 ### CSS Issues
 There seems to be some funky CSS hover animations going on, especially in
 the navbar. Clean these up so things are more readable and pretty. 
+
+- Quick fix, hopped in the stylesheets and found the hover css and changed the color from black to a light blue.
 
 ### Security Problem
 
 We noticed that anyone can modify or delete any restaurant. Please make sure 
 that only the restaurant owner has this access. 
 
+- Quick fix by setting a limitation so that the edit and delete buttons would only display if the current_user.id == restaurant.user_id. This way, only the user who created the restaurant has that functionality. 
+
 ### Missing Home Page
 
 Our app doesn't have a home page yet! We'd like there to be one that lists all
 restaurants ranked by rating. If it was paginated that would be a plus! 
+
+- Part of this one was relatively simple and I believe I also have the home button going to the home page as well now. I was able to get the restaurants to display on the home page and I have included pagination on the bottome. I had never used pagination so that was fun to look into and relatively simple to implement. 
 
 ### Owner Alerts
 
@@ -47,14 +57,13 @@ sent to them when new reviews come in? Our app gets a ton of traffic, so let's n
 bog the web process down with slow actions like sending emails. ActionJob would be a 
 great fit here. 
 
-### Test Suite
-
-This is just a play app, but we still want to see some tests written. While RSPEC is great, our team prefers the built-in minitest. Make sure our mission critical processes
-are protected! 
+- This one was fun to do. I had never used ActionJob so I just read the docs and looked at some examples and went through it piece by piece. I ended up having action mailer do the work and I created a fake gmail account to send the emails notifying restaurant creators that their restaurant had been reviewed. I almost had the emails being sent to the current_user in a brain-fart moment and then I dug through until I had the email of the user who created the restaurant as the recipient of the emails. Boom. 
 
 ### Restaurant Pictures
 
 We need restaurant owners to be able to upload photos of their restuarant and food. ActiveStorage would be great for this. 
+
+- ActiveStorage is another very cool thing I had never done before. Like ActionMailer, I read the docs and followed some examples piece by piece until The images were uploading properly. I got confused for a little because I had the images being uploaded but not displayed so then I set a conditional to have them show if an image was attached and styled them simply to not be obnoxiously huge. I also intentionally chose to only have ONE image be attached. I understand that to add more would be to change the model to say 'has_many_attached: images' and then include within the controller params params.permit (:blah, :blah, images: []). I just thought it made the site look cleaner with one image as I looked at it over and over again.
 
 ## Bonus Tasks
 

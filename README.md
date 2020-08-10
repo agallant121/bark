@@ -16,6 +16,8 @@ This repository is a very bare-bones Ruby On Rails app called "Bark" that allows
 
 The newest reviews should be at the top of the list. 
 
+- This one went quickly and I made a model method to call on a restaurant object to order the reviews. Method within the restaurant model.
+
 ### Comment Deletion
 
 Users need to be able to delete their own comments. There is already a button, but it doesn't work. 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  get 'favorites/update'
   resources :restaurants do
     resources :reviews do
       # delete '/:id/comment', to: 'reviews#destroy_comment'

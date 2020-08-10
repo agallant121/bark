@@ -28,4 +28,6 @@
 
 <%= render 'reviews/form' %>
 <h2>Reviews</h2>
-<%= render @restaurant.order_reviews if @reviews.any? %>
+<div id="restrevs">
+  <%= render @restaurant.order_reviews if @reviews.any? %>
+</div>

@@ -1,3 +1,5 @@
+<script src="/js/jquery.min.js"></script>
+
 <div class="card">
   <div class="card-body">
     <h5 class="card-title"><%= review.user.email %></h5>
@@ -7,5 +9,6 @@
     <% if review.image.attached? %>
       <%= image_tag review.image, style: "width: 200px; display: block" %>
     <% end %>
+    <p><%= link_to favorite_text, favorites_update_path(review: review), id: 'favorite_link', remote: true  %></p>
   </div>
 </div>

@@ -22,7 +22,7 @@ The newest reviews should be at the top of the list.
 
 Users need to be able to delete their own comments. There is already a button, but it doesn't work. 
 
-- I feel as though I spent a silly amount of time on this one but let me explain my thinking...All I wanted to do was to target the comment's ID, however, I could not do that because comments are not their own rescource in the DB with a relationship to reviews, they are an attribute of reviews. Since this is an sqlite3 DB I could not do my plan which was to remove 'comment' from the Review table in the DB and make a new Comment table and have  a one to many with review:references for the comments. That way I would be able to target the comment's ID for deletion independent from the Review. However, since I could not do this I decided to just make a new route and controller action that would take the review's comment and set it to nil or an empty string (" "). When I tried this approach and played around with it in pry, it worked. I was able to get the comment and change it to an empty string but no matter how I approached saving the changes but using review.update / review.update_attributes(comment: ''), review.save (any combination of saving stuff) or any of those, the comment would not stay changed and remained on the page. I know you said to not spend too much time on this but it was bothering me so I stuck with it for a while. Unfortunately I could not get it to work so out of spite I am just deleting the entire review for now so you can at least see that I did something.
+- I feel as though I spent a silly amount of time on this one but let me explain my thinking...All I wanted to do was to target the comment's ID, however, I could not do that because comments are not their own rescource in the DB with a relationship to reviews, they are an attribute of reviews. Since this is an sqlite3 DB I could not do my plan which was to remove 'comment' column from the Review table in the DB and make a new Comment table and have a one to many with review:references for the comments. That way I would be able to target the comment's ID for deletion independent from the Review. However, since I could not do this I decided to just make a new route and controller action that would take the review's comment and set it to nil or an empty string (" "). When I tried this approach and played around with it in pry, it worked. I was able to get the comment and change it to an empty string but no matter how I approached saving the changes but using review.update / review.update_attributes(comment: ''), review.save (any combination of saving stuff) or any of those, the comment would not stay changed and remained on the page. I know you said to not spend too much time on this but it was bothering me so I stuck with it for a while. Unfortunately I could not get it to work so out of spite I am just deleting the entire review for now so you can at least see that I did something.
 
 ### Average Rating
 
@@ -48,7 +48,17 @@ that only the restaurant owner has this access.
 Our app doesn't have a home page yet! We'd like there to be one that lists all
 restaurants ranked by rating. If it was paginated that would be a plus! 
 
-- Part of this one was relatively simple and I believe I also have the home button going to the home page as well now. I was able to get the restaurants to display on the home page and I have included pagination on the bottome. I had never used pagination so that was fun to look into and relatively simple to implement. 
+- Part of this one was relatively simple and I believe I also have the home button going to the home page as well now. I was able to get the restaurants to display on the home page and I have included pagination on the bottom. I had never used pagination so that was fun to look into and relatively simple to implement. The next part I spent too much time on; making a method with a SQL queury to order them as you wanted.
+
+```
+def sort_by_average
+    # Restaurant
+    # .select('name')
+    # .join(:reviews)
+    # .order('average(reviews.rating) desc')
+  end
+```
+This is where I ended up with my AR call in this. I feel like I am right there, flirting with the answer, but I would need more time to look at this to figure it out. 
 
 ### Owner Alerts
 

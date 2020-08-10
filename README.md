@@ -63,7 +63,7 @@ great fit here.
 
 We need restaurant owners to be able to upload photos of their restuarant and food. ActiveStorage would be great for this. 
 
-- ActiveStorage is another very cool thing I had never done before. Like ActionMailer, I read the docs and followed some examples piece by piece until The images were uploading properly. I got confused for a little because I had the images being uploaded but not displayed so then I set a conditional to have them show if an image was attached and styled them simply to not be obnoxiously huge. I also intentionally chose to only have ONE image be attached. I understand that to add more would be to change the model to say 'has_many_attached: images' and then include within the controller params params.permit (:blah, :blah, images: []). I just thought it made the site look cleaner with one image as I looked at it over and over again.
+- ActiveStorage is another very cool thing I had never done before. Like ActionMailer, I read the docs and followed some examples piece by piece until The images were uploading properly. I got confused for a little because I had the images being uploaded but not displayed so then I set a conditional to have them show if an image was attached and styled them simply so as to not be obnoxiously huge. I also intentionally chose to only have ONE image be attached. I understand that to add more would be to change the model to say 'has_many_attached: images' and then include within the controller params params.permit (:blah, :blah, images: [ ]). I just thought it made the site look cleaner with one image as I looked at it over and over again.
 
 ## Bonus Tasks
 
@@ -71,15 +71,23 @@ We need restaurant owners to be able to upload photos of their restuarant and fo
 
 It would be cool if customers could submit photos with their reviews too.
 
+- This was done the same way as the restaurant owner adding pics!
+
 ### Real-Time Reviews
 
 Use [StimulusReflex](https://docs.stimulusreflex.com) to make posting comments happen in without a page reload and [CableReady](https://cableready.stimulusreflex.com) to make viewers see those same comments come in in real-time
+
+-Unfortunately I did not get to tackle this one which is a huge mistake since I know that is what you are in the middle of implementing. I read up on it but just did not have enough time.
 
 ### Clean the Look Up
 
 Whoever designed this didn't do a great job. Take advantage of Bootstrap and add your own touch to make it look pretty.
 
+- I did not have time to do this either but I am familiar with bootstrap and materialize. The banana pepper sauce website that I sent you was styled that way beginning from an ugly 'starter tempplate'.
+
 ### Helpful Reviews
 
 Users could mark reviews they read as helpful. There should be a record of this so that they could later go back and see which reviews
 they marked as helpful in the past. 
+
+- I was able to add this and have the saved reviews displayed on the home page as links back to the restaurant's show page from where the review was saved. I would have had this go directly to a review show page but that did not exist and I thought that this made the most sense to go back to where you could see it. The one thing I TRIED and maybe should have kept it simpler was to implement a little jquery and javascript to change the words "Save Review" under the reviews on the restaurant show page to "UnSave Review" when the review was saved. In previous projects I made a conditional around the link to show this change but I thought the code looked cleaner this way using a helper method from the application controller. Now when you click 'Save Review' two times in a row it will add the review and then delete it from your saved reviews but the word does not change. Either way it works and I have the reviews getting saved and we can look at them although I would keep working on this in the real world to have that word change back and forth depending on if the review was saved or not. 

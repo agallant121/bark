@@ -1,11 +1,24 @@
+<% if @restaurant.image.attached? %>
+  <%= image_tag @restaurant.image, style: "width: 200px; display: block" %>
+<% end %>
+
+
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<% if current_user.id == @restaurant.user_id %>
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<% end %>
 <%= link_to 'Back', restaurants_path %>
 
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>
+    Average Rating: <%= @restaurant.avg_rating if @reviews.any? %>
+  </strong>
 </p>
 
 <p>
@@ -15,4 +28,6 @@
 
 <%= render 'reviews/form' %>
 <h2>Reviews</h2>
-<%= render @reviews if @reviews.any? %>
+<div id="restrevs">
+  <%= render @restaurant.order_reviews if @reviews.any? %>
+</div>

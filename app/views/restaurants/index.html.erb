@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Restaurants</h1>
-
 <table>
   <thead>
     <tr>
@@ -13,14 +12,18 @@
 
   <tbody>
     <% @restaurants.each do |restaurant| %>
+    <div id="listrest">
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.user_id %></td>
         <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user && current_user.id == restaurant.user_id %>
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      <% end %>
       </tr>
-    <% end %>
+    </div>
   </tbody>
 </table>
 

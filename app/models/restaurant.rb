@@ -15,9 +15,11 @@ class Restaurant < ApplicationRecord
     # reviews.order("created_at DESC")
   end
 
-#   def sort_by_average
-#     select distinct name from restaurants
-#     left join reviews on restaurants.id = reviews.restaurant_id
-#     order by (reviews.rating) desc;
-#   end
+  def self.sort_by_average
+    # select distinct name from restaurants
+    # left join reviews on restaurants.id = reviews.restaurant_id
+    # order by (reviews.rating) desc;
+
+    # Restaurant.select(:name).joins(:reviews).order.(('reviews.rating') :desc)
+  end
 end

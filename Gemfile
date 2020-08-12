@@ -67,3 +67,5 @@ gem "devise", "~> 4.7"
 gem "foreman", "~> 0.87.1"
 gem 'will_paginate', '~> 3.1'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
+
+gem "stimulus_reflex", "~> 3.2"

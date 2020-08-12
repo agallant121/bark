@@ -6,6 +6,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
+    # @restaurants = Restaurant.select(:name).order(restaurant.reviews.average(rating: :desc))
   end
 
   # GET /restaurants/1

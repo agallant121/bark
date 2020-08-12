@@ -12,7 +12,7 @@
 
   <tbody>
     <% @restaurants.each do |restaurant| %>
-    <div id="listrest">
+    <div id="listrest-<%= restaurant.id %>">
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.user_id %></td>
